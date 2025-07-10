@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DackDev - Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --clr-dark-bg: #121212;
+      --clr-glass-bg: rgba(20, 20, 20, 0.7);
+      --clr-light-red: #ff6f6f;
+      --clr-border-red: rgba(255, 111, 111, 0.4);
+      --clr-text-light: #eee;
+      --clr-text-accent: #ff6f6f;
+      --clr-shadow-red: rgba(255, 111, 111, 0.35);
+      --glass-blur: 18px;
+      --font-mono: 'Fira Code', monospace;
+      --anim-duration: 1s;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      content: "</>";
+      background: var(--clr-dark-bg);
+      color: var(--clr-text-light);
+      font-family: var(--font-mono);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      user-select: none;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      top: 15%;
+      left: 10%;
+      font-size: 12rem;
+      color: rgba(255, 111, 111, 0.06);
+      font-weight: 900;
+      font-family: var(--font-mono);
+      user-select: none;
+      pointer-events: none;
+      transform: rotate(-15deg);
+      z-index: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--clr-light-red);
+      text-shadow: 0 0 12px var(--clr-light-red);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp var(--anim-duration) forwards 0.1s;
+    }
+
+    .subtitle {
+      color: var(--clr-light-red);
+      opacity: 0.9;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 0 0 8px var(--clr-shadow-red);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp var(--anim-duration) forwards 0.3s;
+    }
+
+    .tip {
+      color: var(--clr-light-red);
+      opacity: 0.7;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      text-shadow: 0 0 6px var(--clr-shadow-red);
+      opacity: 0;
+      animation: fadeInUp var(--anim-duration) forwards 0.5s;
+    }
+
+    .main-wrapper {
+      display: flex;
+      width: 100%;
+      z-index: 1;
+      position: relative;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    .main-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    main {
+      background: var(--clr-glass-bg);
+      border-radius: 16px;
+      border: 1.5px solid var(--clr-border-red);
+      box-shadow: 0 8px 24px var(--clr-shadow-red), inset 0 0 40px rgba(255, 111, 111, 0.15);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      width: 100%;
+      min-width: calc(100% - 4rem);
+      padding: 2rem;
+      text-align: center;
+      user-select: text;
+      position: relative;
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+    }
+
+    .hamburger-menu {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .hamburger-icon {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--clr-light-red);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px var(--clr-light-red);
+    }
+
+    .hamburger-icon.open span:nth-child(1) {
+      transform: translateY(8.5px) rotate(45deg);
+    }
+
+    .hamburger-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-icon.open span:nth-child(3) {
+      transform: translateY(-8.5px) rotate(-45deg);
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100vh;
+      background: var(--clr-glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-left: 1.5px solid var(--clr-border-red);
+      box-shadow: -8px 0 24px var(--clr-shadow-red);
+      padding: 5rem 1.5rem 2rem;
+      z-index: 999;
+      transition: right 0.3s ease;
+    }
+
+    .nav-menu.open {
+      right: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--clr-light-red);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px var(--clr-light-red);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      display: block;
+      text-align: left;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 111, 111, 0.1);
+      transform: translateX(5px);
+      text-shadow: 0 0 12px var(--clr-light-red);
+    }
+
+    .nav-links a.home-btn {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 111, 111, 0.3);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--clr-border-red);
+      box-shadow: 0 0 20px var(--clr-shadow-red);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeInUp var(--anim-duration) forwards 0.5s;
+    }
+
+    h6 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--clr-light-red);
+      text-shadow: 0 0 8px var(--clr-shadow-red);
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp var(--anim-duration) forwards 0.7s;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: var(--clr-light-red);
+      text-shadow: 0 0 12px var(--clr-light-red);
+      user-select: text;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp var(--anim-duration) forwards 0.9s;
+    }
+
+    .description {
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp var(--anim-duration) forwards 1.1s;
+    }
+
+    .portfolio {
+      color: var(--clr-light-red);
+      text-shadow: 0 0 12px var(--clr-light-red);
+      user-select: text;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp var(--anim-duration) forwards 1.3s;
+    }
+
+    .page-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1rem;
+      z-index: 2;
+    }
+
+    .page-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 111, 111, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .page-dot.active {
+      background-color: var(--clr-light-red);
+      transform: scale(1.2);
+      box-shadow: 0 0 8px var(--clr-shadow-red);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        min-width: calc(100% - 2rem);
+      }
+      
+      .profile-img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h6 {
+        font-size: 1rem;
+      }
+      
+      .title {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .tip {
+        font-size: 0.9rem;
+      }
+
+      .hamburger-menu {
+        top: 1rem;
+        right: 1rem;
+      }
+      
+      .nav-menu {
+        width: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-menu {
+        right: 0;
+        top: -100vh;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        border-left: none;
+        border-bottom: 1.5px solid var(--clr-border-red);
+        transition: top 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .nav-menu.open {
+        top: 0;
+      }
+      
+      .nav-links {
+        padding-bottom: 2rem;
+      }
+      
+      .hamburger-icon span {
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hamburger-menu">
+    <div class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="nav-menu">
+    <nav class="nav-links">
+      <a href="index.html" class="home-btn">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="friends.html">Friends</a>
+    </nav>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1 class="title">Friends</h1>
+      <p class="subtitle">These are the amazing developers/friends that have supported me and learnt with.</p> <br>
+    </div>
+    
+    <div class="main-wrapper" id="mainWrapper">
+      <main>
+        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1294236599751806986/1391492151510175875/Untitled_design-63.png?ex=68700c0d&is=686eba8d&hm=37c498207ea999d06b6c35ae4a3133aa1931d2a4abdf87980b5c5b9347abdc68&">
+        <h6>Full-Stack Developer & DJ</h6>
+        <h1>LoyahDev</h1>
+        <p class="description">"Yo I'm Jaxon a full stack developer and DJ that actively makes websites apps, and tools. I've made ThirdSign and have done lots of research on sideloading for iOS, you might find me around. Dack is also an extremely shitty person and I have helped him through his dev life and motivation. 🙏" <br> <br>
+        - LoyahDev.</p>
+        <a href="https://updates.loyah.dev/" class="portfolio">Click to visit portfolio.</a><br>
+        <a href="https://github.com/loyahdev" class="portfolio">Click to visit GitHub account.</a><br>
+        <a href="https://buy.loyah.dev/" class="portfolio">Click to buy iOS certificates from LoyahDev</a>
+      </main>
+
+      <main>
+      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1392641038153420930/IMG_8178.jpg?ex=68704589&is=686ef409&hm=7701d048a353e92d87e036dd994dc16a120beff7efdda4a7784817bad168e976&">
+        <h6>Web-Developer & iOS-Developer</h6>
+        <h1>MoonyDev</h1>
+        <p class="description">MoonyDev is a front-end iOS developer who is passionate about creating innovative iOS tools seamlessly. Pushes the boundaries of iOS development, providing users with a seamless iOS experience.</p> <br> <br> <br>
+      <a href="https://moony-dev.xyz/" class="portfolio">Click to visit portfolio.</a><br>
+      <a href="https://github.com/m0onyy" class="portfolio">Click to visit GitHub account.</a>
+      </main>
+
+      <main>
+      <img class="profile-img" src="https://cdn.discordapp.com/avatars/752564906854842440/5f4a5fb6407df040e65701c535eb2360.png?size=1024">
+        <h6>Web-Developer & iOS-Developer</h6>
+        <h1>Milderous</h1>
+        <p class="description">"Hello users, i am Milderous, a web dev who inherited samhub's intellect and ideals. i also own the notorious csl server. (sry if i nuked u but you probably deserved it...) I aim to please with my work and my friends work. idk what i'm saying bc i've never done one of these so uhh, have a good day." <br> <br>
+- Milderous.</p>
+        <a href="https://discord.gg/tqAZcA5PTr" class="portfolio">Click to visit CSL server.</a><br>
+        <a href="https://github.com/ViridDevelopment" class="portfolio">Click to visit GitHub Account.</a>
+      </main>
+      
+      <main>
+      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1391550147195830383/IMG_8185.png?ex=68704210&is=686ef090&hm=8ab7b8e905033330ab34214581820651f0b70ec20429a8ae09968237ff236707&">
+      <h6>Web-Developer & Reverse-Engineer</h6>
+      <h1>Daisuke</h1>
+      <p class="description">"The only femboy that made an iOS signer and fuck all Roblox executors :3 I also used AI cause I got lazy to learn coding lol and I'm also learning reverse engineering and i also made the best web ipa signer, ipasign >~< also fuck ragebaiters and people who use modern slang by TikTok >:3" <br> <br> - Daisuke.</p>
+      <a href="https://ipasign.pro/" class="portfolio">Click to visit IPASign.</a><br>
+      <a href="https://github.com/daisuke1227" class="portfolio">Click to visit GitHub</a>
+      </main>
+
+      <main>
+        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1298389137409183775/1392506387099156650/9e330fe04044c4d5fc2e954b8c18bbea.jpg?ex=686fc822&is=686e76a2&hm=a6ba53554f4af054a0c5517d4f8da49ea847b93f9cd1ebbb4e919b22ed3216f6&">
+        <h6>Full-Stack Developer</h6>
+        <h1>Osf0</h1>
+        <p class="description">"Yo, I'm osf0, a grey hat dev out of New Zealand. I build everything from game-breaking cheats to bank-grade backend systems. I mess with low-level code, automation, reverse engineering, and anything that runs on silicon. C, Python, JS, ASM, doesn't matter, I'm in." <br> <br> - Osf0</p>
+        <a href="https://bio.osf0.wtf" class="portfolio">Click to visit portfolio</a>
+      </main>
+      
+      <main>
+        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1392601317108744363/IMG_8209.png?ex=6870208b&is=686ecf0b&hm=f546b8cbf89812144a8034f2954a4cf27276a268cd017c807a09cca89633c450&">
+        <h6>Web-Developer</h6>
+        <h1>Voidy</h1>
+        <p class="description">"Hello, im voidy i helped dack dev by giving him suggestions on websites on learning code, helping him code. Im a sigma person thats busy almost all the time. I know web coding languages, i sometimes code api's and i do random shit." <br> <br> - Voidy</p>
+        <a href="https://voidyy0.neocities.org/" class="portfolio">Click to visit portfolio</a>
+      </main>
+      
+      <main>
+        <img class="profile-img" src="https://cdn.discordapp.com/avatars/615552920204869636/a_1d0025f831413188e12beddf016ffc8d.gif?size=1024">
+        <h6>Minecraft-Developer</h6>
+        <h1>NelA</h1>
+        <p class="description">NelA is an awesome and supportive guy who is a Minecraft Modrinth resource pack and mod developer with over 200,000+ downloads. He also owns the Enhanced Visuals Discord server, where you can download his mods and resource packs.</p> <br> <br>
+        <a href="https://discord.gg/a4hXzy62Dp" class="portfolio">Click to join Enhanced Visuals server</a>
+      </main>
+    </div>
+    
+    <div class="page-indicator" id="pageIndicator"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainWrapper = document.getElementById('mainWrapper');
+      const pageIndicator = document.getElementById('pageIndicator');
+      const mains = document.querySelectorAll('main');
+      
+      mains.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('page-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          scrollToMain(index);
+        });
+        pageIndicator.appendChild(dot);
+      });
+      
+      mainWrapper.addEventListener('scroll', updateActiveDot);
+      
+      function updateActiveDot() {
+        const scrollPosition = mainWrapper.scrollLeft;
+        const mainWidth = mainWrapper.clientWidth;
+        const currentIndex = Math.round(scrollPosition / mainWidth);
+        
+        const dots = document.querySelectorAll('.page-dot');
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+      
+      function scrollToMain(index) {
+        const mainWidth = mainWrapper.clientWidth;
+        mainWrapper.scrollTo({
+          left: index * mainWidth,
+          behavior: 'smooth'
+        });
+      }
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(mains).indexOf(entry.target);
+            const dots = document.querySelectorAll('.page-dot');
+            dots.forEach((dot, dotIndex) => {
+              if (dotIndex === index) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, {
+        root: mainWrapper,
+        threshold: 0.5
+      });
+      
+      mains.forEach(main => {
+        observer.observe(main);
+      });
+
+      const hamburgerIcon = document.querySelector('.hamburger-icon');
+      const navMenu = document.querySelector('.nav-menu');
+      const overlay = document.querySelector('.overlay');
+
+      hamburgerIcon.addEventListener('click', () => {
+        hamburgerIcon.classList.toggle('open');
+        navMenu.classList.toggle('open');
+        overlay.classList.toggle('open');
+      });
+
+      overlay.addEventListener('click', () => {
+        hamburgerIcon.classList.remove('open');
+        navMenu.classList.remove('open');
+        overlay.classList.remove('open');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburgerIcon.classList.remove('open');
+          navMenu.classList.remove('open');
+          overlay.classList.remove('open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

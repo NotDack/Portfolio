@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>DackDev - Portfolio</title>
   
   <link
@@ -43,7 +45,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      padding: 1.5rem;
       user-select: none;
       position: relative;
       overflow-x: hidden;
@@ -74,24 +76,38 @@
       backdrop-filter: blur(var(--glass-blur));
       -webkit-backdrop-filter: blur(var(--glass-blur));
       width: 100%;
-      max-width: 460px;
-      padding: 2.6rem 2rem 3rem;
-      text-align: center;
+      max-width: 550px;
+      padding: 1.5rem;
       user-select: text;
       position: relative;
       z-index: 1;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      justify-content: center;
+      height: 100%;
     }
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
       color: var(--clr-light-red);
       text-shadow: 0 0 12px var(--clr-light-red);
       user-select: text;
       opacity: 0;
       transform: translateY(-10px);
       animation: fadeInUp 0.7s forwards 0.3s;
+      line-height: 1.2;
     }
 
     img.profile {
@@ -101,7 +117,6 @@
       border: 3px solid var(--clr-light-red);
       box-shadow: 0 0 18px var(--clr-light-red);
       object-fit: cover;
-      margin: 1.8rem auto 2rem;
       cursor: default;
       transition: transform 0.35s ease, box-shadow 0.35s ease;
       opacity: 0;
@@ -113,75 +128,53 @@
       box-shadow: 0 0 28px var(--clr-light-red);
     }
 
+    .content-section {
+      flex: 1;
+      text-align: left;
+    }
+
     p.description {
       font-size: 1rem;
-      line-height: 1.5;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
+      font-weight: 300;
+      line-height: 1.6;
       letter-spacing: 0.03em;
       color: var(--clr-text-light);
       user-select: text;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeInUp 0.7s forwards 0.9s;
+      margin-bottom: 1.2rem;
+      max-width: 100%;
+      padding-right: 0;
     }
 
-    .skills {
-      margin-top: 2.8rem;
+    .social-box {
+      background: rgba(20, 20, 20, 0.5);
+      border-radius: 12px;
+      border: 1px solid var(--clr-border-red);
+      padding: 1.2rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-links {
       display: flex;
       justify-content: space-around;
-      gap: 1.6rem;
-      flex-wrap: wrap;
-      user-select: none;
+      gap: 1rem;
       opacity: 0;
       animation: fadeInUp 0.7s forwards 1.2s;
     }
 
-    .skill {
-      width: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--clr-text-light);
-      font-size: 0.85rem;
-      text-shadow: 0 0 6px rgba(0,0,0,0.7);
-    }
-
-    .skill i {
-      font-size: 3.8rem;
-      color: var(--clr-light-red);
-      text-shadow: 0 0 12px var(--clr-light-red);
-      user-select: none;
-    }
-
-    .skill .percent {
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--clr-text-accent);
-    }
-
-    .progressbar-container {
-      width: 90px;
-      height: 12px;
-      margin-top: 0.25rem;
-    }
-
-    .social-links {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.3rem;
-      opacity: 0;
-      animation: fadeInUp 0.7s forwards 1.5s;
-    }
-
     .social-links a {
       color: var(--clr-light-red);
-      font-size: 1.8rem;
+      font-size: 2.3rem;
       text-shadow: 0 0 12px var(--clr-light-red);
       transition: color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-decoration: none;
     }
     .social-links a:hover,
     .social-links a:focus-visible {
@@ -190,58 +183,183 @@
       outline: none;
     }
 
-    @media (max-width: 400px) {
+    .hamburger-menu {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .hamburger-icon {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--clr-light-red);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px var(--clr-light-red);
+    }
+
+    .hamburger-icon.open span:nth-child(1) {
+      transform: translateY(8.5px) rotate(45deg);
+    }
+
+    .hamburger-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-icon.open span:nth-child(3) {
+      transform: translateY(-8.5px) rotate(-45deg);
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100vh;
+      background: var(--clr-glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-left: 1.5px solid var(--clr-border-red);
+      box-shadow: -8px 0 24px var(--clr-shadow-red);
+      padding: 5rem 1.5rem 2rem;
+      z-index: 999;
+      transition: right 0.3s ease;
+    }
+
+    .nav-menu.open {
+      right: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--clr-light-red);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px var(--clr-light-red);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      display: block;
+      text-align: left;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 111, 111, 0.1);
+      transform: translateX(5px);
+      text-shadow: 0 0 12px var(--clr-light-red);
+    }
+
+    .nav-links a.home-btn {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 111, 111, 0.3);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 700px) {
       main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         max-width: 90vw;
-        padding: 2rem 1.5rem 2.5rem;
+        padding: 1.5rem 1.2rem;
+        gap: 1rem;
       }
-      .skill {
-        width: 80px;
-        font-size: 0.8rem;
+      
+      .content-section {
+        text-align: center;
       }
-      .skill i {
-        font-size: 3rem;
+      
+      .social-links {
+        justify-content: center;
       }
-      .progressbar-container {
-        width: 75px;
-        height: 10px;
+      
+      img.profile {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
       }
+      
       h1 {
         font-size: 2rem;
       }
-      img.profile {
-        width: 110px;
-        height: 110px;
-        margin-bottom: 1.4rem;
-      }
+      
       .social-links a {
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
-      .loader {
-        width: 60px;
-        height: 60px;
+      
+      .hamburger-menu {
+        top: 1rem;
+        right: 1rem;
       }
-      .ring1 {
-        width: 60px;
-        height: 60px;
+      
+      .nav-menu {
+        width: 220px;
       }
-      .ring2 {
-        width: 45px;
-        height: 45px;
-        top: 7.5px;
-        left: 7.5px;
+      
+      p.description {
+        padding-right: 0;
       }
-      .ring3 {
-        width: 30px;
-        height: 30px;
-        top: 15px;
-        left: 15px;
+    }
+
+    @media (max-width: 480px) {
+      .nav-menu {
+        right: 0;
+        top: -100vh;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        border-left: none;
+        border-bottom: 1.5px solid var(--clr-border-red);
+        transition: top 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
-      .ring4 {
-        width: 15px;
-        height: 15px;
-        top: 22.5px;
-        left: 22.5px;
+      
+      .nav-menu.open {
+        top: 0;
+      }
+      
+      .nav-links {
+        padding-bottom: 2rem;
+      }
+      
+      .hamburger-icon span {
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
     }
 
@@ -251,6 +369,7 @@
         transform: translateY(0);
       }
     }
+    
     @keyframes fadeInScale {
       to {
         opacity: 1;
@@ -351,52 +470,54 @@
     </div>
   </div>
 
-  <main role="main" aria-label="Developer portfolio container">
-    <h1>DackDev</h1>
-    <img
-      class="profile"
-      src="https://cdn.discordapp.com/avatars/808417465012584468/8ba5ea98bfb37790dd9a63574dd9ab75.png?size=1024"
-      alt="Beautiful Portrait of Dack"
-      width="140" height="140" loading="lazy" draggable="false"
-    />
-    <p class="description">
-      I'm a 15-year-old programmer focused on mastering clean, efficient code with a passion for making things work flawlessly.
-    </p>
+  <div class="hamburger-menu">
+    <div class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
-    <section class="skills" aria-label="Coding skill proficiency">
-      <div class="skill" data-skill="html" data-level="90">
-        <i class="devicon-html5-plain"></i>
-        <div class="progressbar-container" id="bar-html"></div>
-        <div class="percent">90%</div>
-      </div>
-      <div class="skill" data-skill="css" data-level="65">
-        <i class="devicon-css3-plain"></i>
-        <div class="progressbar-container" id="bar-css"></div>
-        <div class="percent">65%</div>
-      </div>
-      <div class="skill" data-skill="python" data-level="20">
-        <i class="devicon-python-plain"></i>
-        <div class="progressbar-container" id="bar-python"></div>
-        <div class="percent">20%</div>
-      </div>
-      <div class="skill" data-skill="js" data-level="10">
-        <i class="devicon-javascript-plain"></i>
-        <div class="progressbar-container" id="bar-js"></div>
-        <div class="percent">10%</div>
-      </div>
-    </section>
-
-    <nav class="social-links" aria-label="Social media links">
-      <a href="https://open.spotify.com/user/31zwzyg6tuz5mdhczot2fnxbmouy" aria-label="Spotify profile" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-spotify"></i>
-      </a>
-      <a href="https://discord.com/users/808417465012584468" aria-label="Discord profile" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-discord"></i>
-      </a>
-      <a href="https://github.com/NotDack" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-github"></i>
-      </a>
+  <div class="nav-menu">
+    <nav class="nav-links">
+      <a href="Dack.html" class="home-btn">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="friends.html">Friends</a>
     </nav>
+  </div>
+
+  <div class="overlay"></div>
+
+  <main role="main" aria-label="Developer portfolio container">
+    <div class="profile-section">
+      <img
+        class="profile"
+        src="https://cdn.discordapp.com/avatars/808417465012584468/8ba5ea98bfb37790dd9a63574dd9ab75.png?size=1024"
+        alt="Beautiful Portrait of Dack"
+        width="150" height="150" loading="lazy" draggable="false"
+      />
+    </div>
+    
+    <div class="content-section">
+      <h1>DackDev</h1>
+      <p class="description">
+        I'm a 15-year-old programmer who loves clean code and solving problems and aims to be an aspiring developer. I build simple, efficient and flawless software.
+      </p>
+
+      <div class="social-box">
+        <nav class="social-links" aria-label="Social media links">
+          <a href="https://open.spotify.com/user/31zwzyg6tuz5mdhczot2fnxbmouy" aria-label="Spotify profile" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-spotify"></i>
+          </a>
+          <a href="https://discord.com/users/808417465012584468" aria-label="Discord profile" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-discord"></i>
+          </a>
+          <a href="https://github.com/NotDack" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -407,21 +528,28 @@
         loadingScreen.classList.add("fade-out");
       }, 1000);
 
-      const skills = document.querySelectorAll(".skill");
-      skills.forEach((skill) => {
-        const level = skill.dataset.level;
-        const barContainer = skill.querySelector(".progressbar-container");
-        const progressBar = document.createElement("div");
-        progressBar.style.width = "0%";
-        progressBar.style.height = "8px";
-        progressBar.style.backgroundColor = "var(--clr-light-red)";
-        progressBar.style.borderRadius = "6px";
-        progressBar.style.boxShadow = "0 0 6px var(--clr-light-red)";
-        progressBar.style.transition = "width 1.3s ease";
-        barContainer.appendChild(progressBar);
-        setTimeout(() => {
-          progressBar.style.width = `${level}%`;
-        }, 1400);
+      const hamburgerIcon = document.querySelector('.hamburger-icon');
+      const navMenu = document.querySelector('.nav-menu');
+      const overlay = document.querySelector('.overlay');
+
+      hamburgerIcon.addEventListener('click', () => {
+        hamburgerIcon.classList.toggle('open');
+        navMenu.classList.toggle('open');
+        overlay.classList.toggle('open');
+      });
+
+      overlay.addEventListener('click', () => {
+        hamburgerIcon.classList.remove('open');
+        navMenu.classList.remove('open');
+        overlay.classList.remove('open');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburgerIcon.classList.remove('open');
+          navMenu.classList.remove('open');
+          overlay.classList.remove('open');
+        });
       });
     });
   </script>

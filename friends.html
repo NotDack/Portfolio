@@ -140,115 +140,6 @@
       flex: 0 0 auto;
     }
 
-    .hamburger-menu {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .hamburger-icon {
-      width: 30px;
-      height: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hamburger-icon span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background-color: var(--clr-light-red);
-      border-radius: 3px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 8px var(--clr-light-red);
-    }
-
-    .hamburger-icon.open span:nth-child(1) {
-      transform: translateY(8.5px) rotate(45deg);
-    }
-
-    .hamburger-icon.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-icon.open span:nth-child(3) {
-      transform: translateY(-8.5px) rotate(-45deg);
-    }
-
-    .nav-menu {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 250px;
-      height: 100vh;
-      background: var(--clr-glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border-left: 1.5px solid var(--clr-border-red);
-      box-shadow: -8px 0 24px var(--clr-shadow-red);
-      padding: 5rem 1.5rem 2rem;
-      z-index: 999;
-      transition: right 0.3s ease;
-    }
-
-    .nav-menu.open {
-      right: 0;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: var(--clr-light-red);
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-shadow: 0 0 8px var(--clr-light-red);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      display: block;
-      text-align: left;
-    }
-
-    .nav-links a:hover {
-      background-color: rgba(255, 111, 111, 0.1);
-      transform: translateX(5px);
-      text-shadow: 0 0 12px var(--clr-light-red);
-    }
-
-    .nav-links a.home-btn {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 111, 111, 0.3);
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      z-index: 998;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -358,62 +249,10 @@
       .tip {
         font-size: 0.9rem;
       }
-
-      .hamburger-menu {
-        top: 1rem;
-        right: 1rem;
-      }
-      
-      .nav-menu {
-        width: 220px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-menu {
-        right: 0;
-        top: -100vh;
-        width: 100%;
-        height: auto;
-        max-height: 80vh;
-        border-left: none;
-        border-bottom: 1.5px solid var(--clr-border-red);
-        transition: top 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      
-      .nav-menu.open {
-        top: 0;
-      }
-      
-      .nav-links {
-        padding-bottom: 2rem;
-      }
-      
-      .hamburger-icon span {
-        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
     }
   </style>
 </head>
 <body>
-  <div class="hamburger-menu">
-    <div class="hamburger-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div class="nav-menu">
-    <nav class="nav-links">
-      <a href="index.html" class="home-btn">Home</a>
-      <a href="skills.html">Skills</a>
-      <a href="friends.html">Friends</a>
-    </nav>
-  </div>
-
-  <div class="overlay"></div>
-
   <div class="container">
     <div class="header">
       <h1 class="title">Friends</h1>
@@ -422,7 +261,7 @@
     
     <div class="main-wrapper" id="mainWrapper">
       <main>
-        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1294236599751806986/1391492151510175875/Untitled_design-63.png?ex=68700c0d&is=686eba8d&hm=37c498207ea999d06b6c35ae4a3133aa1931d2a4abdf87980b5c5b9347abdc68&">
+        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1294236599751806986/1391492151510175875/Untitled_design-63.png?ex=686c178d&is=686ac60d&hm=741c4bb3a4141ae4da64d14c508a1583aab684cace4982438b00ee7b5bda81f9&" alt="Loyahdev">
         <h6>Full-Stack Developer & DJ</h6>
         <h1>LoyahDev</h1>
         <p class="description">"Yo I'm Jaxon a full stack developer and DJ that actively makes websites apps, and tools. I've made ThirdSign and have done lots of research on sideloading for iOS, you might find me around. Dack is also an extremely shitty person and I have helped him through his dev life and motivation. 🙏" <br> <br>
@@ -433,17 +272,17 @@
       </main>
 
       <main>
-      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1392641038153420930/IMG_8178.jpg?ex=68704589&is=686ef409&hm=7701d048a353e92d87e036dd994dc16a120beff7efdda4a7784817bad168e976&">
-        <h6>Web-Developer & iOS-Developer</h6>
+      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1367708733106421851/1391504804119052298/IMG_8178.jpg?ex=686c2356&is=686ad1d6&hm=b3769786befa1d9a48570b9878e5e94834512126c54ab862cccb9bce52d9a2b2&">
+        <h6>Web Developer & iOS Developer</h6>
         <h1>MoonyDev</h1>
-        <p class="description">MoonyDev is a front-end iOS developer who is passionate about creating innovative iOS tools seamlessly. Pushes the boundaries of iOS development, providing users with a seamless iOS experience.</p> <br> <br> <br>
+        <p class="description">MoonyDev is a front-end iOS developer who is passionate about creating innovative iOS tools seamlessly. Pushes the boundaries of iOS development, providing users with a seamless iOS experience.</p> <br> <br>
       <a href="https://moony-dev.xyz/" class="portfolio">Click to visit portfolio.</a><br>
       <a href="https://github.com/m0onyy" class="portfolio">Click to visit GitHub account.</a>
       </main>
 
       <main>
       <img class="profile-img" src="https://cdn.discordapp.com/avatars/752564906854842440/5f4a5fb6407df040e65701c535eb2360.png?size=1024">
-        <h6>Web-Developer & iOS-Developer</h6>
+        <h6>Web Developer & iOS Developer</h6>
         <h1>Milderous</h1>
         <p class="description">"Hello users, i am Milderous, a web dev who inherited samhub's intellect and ideals. i also own the notorious csl server. (sry if i nuked u but you probably deserved it...) I aim to please with my work and my friends work. idk what i'm saying bc i've never done one of these so uhh, have a good day." <br> <br>
 - Milderous.</p>
@@ -452,8 +291,8 @@
       </main>
       
       <main>
-      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1391550147195830383/IMG_8185.png?ex=68704210&is=686ef090&hm=8ab7b8e905033330ab34214581820651f0b70ec20429a8ae09968237ff236707&">
-      <h6>Web-Developer & Reverse-Engineer</h6>
+      <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1391550147195830383/IMG_8185.png?ex=686c4d90&is=686afc10&hm=49cce0b42ed902f0971894a9ff88ed4cf43a8bc27d8cc0218678e59cde2f5ea0&">
+      <h6>Web Developer & Reverse Engineer</h6>
       <h1>Daisuke</h1>
       <p class="description">"The only femboy that made an iOS signer and fuck all Roblox executors :3 I also used AI cause I got lazy to learn coding lol and I'm also learning reverse engineering and i also made the best web ipa signer, ipasign >~< also fuck ragebaiters and people who use modern slang by TikTok >:3" <br> <br> - Daisuke.</p>
       <a href="https://ipasign.pro/" class="portfolio">Click to visit IPASign.</a><br>
@@ -469,8 +308,8 @@
       </main>
       
       <main>
-        <img class="profile-img" src="https://cdn.discordapp.com/attachments/1302356551490867211/1392601317108744363/IMG_8209.png?ex=6870208b&is=686ecf0b&hm=f546b8cbf89812144a8034f2954a4cf27276a268cd017c807a09cca89633c450&">
-        <h6>Web-Developer</h6>
+        <img class="profile-img" src="https://cdn.discordapp.com/avatars/1357170860783435799/a_4bd81899eca5d6193c50eeac49c37786.gif?size=1024">
+        <h6>Web Developer</h6>
         <h1>Voidy</h1>
         <p class="description">"Hello, im voidy i helped dack dev by giving him suggestions on websites on learning code, helping him code. Im a sigma person thats busy almost all the time. I know web coding languages, i sometimes code api's and i do random shit." <br> <br> - Voidy</p>
         <a href="https://voidyy0.neocities.org/" class="portfolio">Click to visit portfolio</a>
@@ -478,7 +317,7 @@
       
       <main>
         <img class="profile-img" src="https://cdn.discordapp.com/avatars/615552920204869636/a_1d0025f831413188e12beddf016ffc8d.gif?size=1024">
-        <h6>Minecraft-Developer</h6>
+        <h6>Minecraft Developer</h6>
         <h1>NelA</h1>
         <p class="description">NelA is an awesome and supportive guy who is a Minecraft Modrinth resource pack and mod developer with over 200,000+ downloads. He also owns the Enhanced Visuals Discord server, where you can download his mods and resource packs.</p> <br> <br>
         <a href="https://discord.gg/a4hXzy62Dp" class="portfolio">Click to join Enhanced Visuals server</a>
@@ -550,30 +389,6 @@
       
       mains.forEach(main => {
         observer.observe(main);
-      });
-
-      const hamburgerIcon = document.querySelector('.hamburger-icon');
-      const navMenu = document.querySelector('.nav-menu');
-      const overlay = document.querySelector('.overlay');
-
-      hamburgerIcon.addEventListener('click', () => {
-        hamburgerIcon.classList.toggle('open');
-        navMenu.classList.toggle('open');
-        overlay.classList.toggle('open');
-      });
-
-      overlay.addEventListener('click', () => {
-        hamburgerIcon.classList.remove('open');
-        navMenu.classList.remove('open');
-        overlay.classList.remove('open');
-      });
-
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburgerIcon.classList.remove('open');
-          navMenu.classList.remove('open');
-          overlay.classList.remove('open');
-        });
       });
     });
   </script>
